@@ -5,8 +5,8 @@ resource "aws_instance" "scandiMagento" {
   key_name          = "scandiKey"
 
   network_interface {
-    device_index                 = 0
-    network_network_interface_id = aws_network_interface.scandiInterface.id
+    device_index         = 0
+    network_interface_id = aws_network_interface.scandiInterface.id
   }
 }
 
@@ -17,7 +17,7 @@ resource "aws_instance" "scandiVarnish" {
   key_name          = "scandiKey"
 
   network_interface {
-    device_index                 = 0
-    network_network_interface_id = aws_network_interface.scandiInterface.id
+    device_index         = 0
+    network_interface_id = aws_network_interface.scandiInterface.id
   }
 }

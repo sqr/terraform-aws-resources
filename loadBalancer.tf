@@ -1,5 +1,5 @@
 resource "aws_lb" "scandiALB" {
-  name               = "Scandi ALB"
+  name               = "ScandiALB"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.allowWeb.id]
@@ -13,14 +13,14 @@ resource "aws_lb" "scandiALB" {
 }
 
 resource "aws_lb_target_group" "varnishTG" {
-  name     = "varnish Target Group"
+  name     = "varnishTargetGroup"
   port     = 80
   protocol = "HTTP"
   vpc_id   = aws_vpc.scandiVpc.id
 }
 
 resource "aws_lb_target_group" "magentoTG" {
-  name     = "magento Target Group"
+  name     = "magentoTargetGroup"
   port     = 80
   protocol = "HTTP"
   vpc_id   = aws_vpc.scandiVpc.id
@@ -47,7 +47,7 @@ resource "aws_lb_listener" "frontendSecure" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.front_end.arn
+    target_group_arn = aws_lb_target_group.varnishTG.arn
   }
 }
 
